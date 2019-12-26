@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6307210264597918085}
   - component: {fileID: 3161866307009668047}
   m_Layer: 0
-  m_Name: Brick (11)
+  m_Name: Brick multihit
   m_TagString: brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,6 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e4a7a9fe1c26647a90ba56708fd516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: 1
+  points: 2
   hitsToBreak: 2
   hitSprite: {fileID: 21300000, guid: fb83a77be38675d4daec74d9c46f3b4d, type: 3}
