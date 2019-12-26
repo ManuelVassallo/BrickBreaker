@@ -38,4 +38,18 @@ public class PaddleScript : MonoBehaviour
             transform.position = new Vector2(rightScreenEdge, transform.position.y);
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // if user hit extra life power up
+        // add 1 live to the live counter
+        // destory power up object
+        if (other.CompareTag("extraLife"))
+        {
+            gm.UpdateLives(1);
+            Destroy(other.gameObject);
+        }
+        
+    }
+
 }

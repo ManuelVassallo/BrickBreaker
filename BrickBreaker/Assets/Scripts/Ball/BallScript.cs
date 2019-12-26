@@ -10,6 +10,7 @@ public class BallScript : MonoBehaviour
     public float speed;
     public Transform explosion;
     public GameManager gm;
+    public Transform powerup;
 
 
     // Start is called before the first frame update
@@ -62,6 +63,16 @@ public class BallScript : MonoBehaviour
         //Play explosion particles
         if (other.transform.CompareTag("brick"))
         {
+            // extra life power up spawner
+            // random chance
+            // if number is less that 50
+            // spawn extra life power up
+            int randChance = Random.Range(1, 101); 
+            if(randChance > 50)
+            {
+                Instantiate(powerup, other.transform.position, other.transform.rotation);
+            }
+
             Transform newExplosion = Instantiate(explosion, other.transform.position, other.transform.rotation);
             //Destroy explosion particle from unity after 2.5f
             Destroy(newExplosion.gameObject, 2.5f);
