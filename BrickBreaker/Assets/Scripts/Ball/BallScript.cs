@@ -21,6 +21,10 @@ public class BallScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gm.gameOver)
+        {
+            return;
+        }
         if (inPlay == false)
         {
             transform.position = paddle.position;
@@ -64,7 +68,7 @@ public class BallScript : MonoBehaviour
 
             // check the worth of points the brick that the user hit and give points accordingly
             gm.UpdateScore(other.gameObject.GetComponent<BrickScript>().points);
-
+            gm.UpdateNumberOfBricks();
             Destroy(other.gameObject);
         }
     }
