@@ -8,6 +8,7 @@ public class BallScript : MonoBehaviour
     public bool inPlay;
     public Transform paddle;
     public float speed;
+    public Transform explosion;
 
 
     // Start is called before the first frame update
@@ -41,6 +42,21 @@ public class BallScript : MonoBehaviour
             Debug.Log("Ball hit the bottom of the screen");
             rb.velocity = Vector2.zero;
             inPlay = false;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        //is the item a brick?
+        //if yes 
+        //destroy it
+        //Play explosion particles
+        if (other.transform.CompareTag("brick"))
+        {
+            Transform newExplosion = Instantiate(explosion, other.transform.position, other.transform.rotation);
+            //Destroy explosion particle from unity after 2.5f
+            Destroy(newExplosion.gameObject, 2.5f);
+            Destroy(other.gameObject);
         }
     }
 
