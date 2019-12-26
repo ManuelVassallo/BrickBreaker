@@ -63,25 +63,37 @@ public class BallScript : MonoBehaviour
         //Play explosion particles
         if (other.transform.CompareTag("brick"))
         {
-            // extra life power up spawner
-            // random chance
-            // if number is less that 50
-            // spawn extra life power up
-            int randChance = Random.Range(1, 101); 
-            if(randChance > 50)
+            // if brick has more than 1 hit to break
+            // replace sprite with creacke bricked sprite 
+            BrickScript brickScript = other.gameObject.GetComponent<BrickScript> ();
+            if (brickScript.hitsToBreak > 1)
             {
-                Instantiate(powerup, other.transform.position, other.transform.rotation);
+                brickScript.BreakBrick();
             }
+            else
+            {
+                // extra life power up spawner
+                // random chance
+                // if number is less that 50
+                // spawn extra life power up
+                int randChance = Random.Range(1, 101);
+                if (randChance > 50)
+                {
+                    Instantiate(powerup, other.transform.position, other.transform.rotation);
+                }
 
-            Transform newExplosion = Instantiate(explosion, other.transform.position, other.transform.rotation);
-            //Destroy explosion particle from unity after 2.5f
-            Destroy(newExplosion.gameObject, 2.5f);
+                Transform newExplosion = Instantiate(explosion, other.transform.position, other.transform.rotation);
+                //Destroy explosion particle from unity after 2.5f
+                Destroy(newExplosion.gameObject, 2.5f);
 
-            // check the worth of points the brick that the user hit and give points accordingly
-            gm.UpdateScore(other.gameObject.GetComponent<BrickScript>().points);
-            gm.UpdateNumberOfBricks();
-            Destroy(other.gameObject);
+                // check the worth of points the brick that the user hit and give points accordingly
+                gm.UpdateScore(brickScript.points);
+                gm.UpdateNumberOfBricks();
+                Destroy(other.gameObject);
+            }
         }
+
+            
     }
 
 }
