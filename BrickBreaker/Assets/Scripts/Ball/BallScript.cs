@@ -11,12 +11,15 @@ public class BallScript : MonoBehaviour
     public Transform explosion;
     public GameManager gm;
     public Transform powerup;
+    AudioSource audio;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();        
+        rb = GetComponent<Rigidbody2D>();
+        audio = GetComponent<AudioSource>();
+ 
     }
 
     // Update is called once per frame
@@ -91,6 +94,9 @@ public class BallScript : MonoBehaviour
                 gm.UpdateNumberOfBricks();
                 Destroy(other.gameObject);
             }
+            // play ball sound effect
+            audio.Play ();
+
         }
 
             
